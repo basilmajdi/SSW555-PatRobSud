@@ -8,13 +8,20 @@ CS-555/SSW-555
 import os
 import sys
 import codecs
+import prettytable
+from datetime import datetime 
+from datetime import date
 import datetime
-import Rob_funcs
+
+from Rob_funcs import birth_b4_marg
+from Rob_funcs import birth_b4_dth
+from Rob_funcs import marg_b4_dvors
+
 from sudhansh import no_reps
 from sudhansh import sibs_no_marry
 from sudhansh import valid_date
+
 from prateek import sibling_nos
-import prettytable
 
 def getdate(d,m,y):
     date = d+'-'+m+'-'+y
@@ -52,16 +59,13 @@ class individual:
         #Checking correctness of dates
         if not valid_date(dod):
             self.err.append("US42-DOD")
+            self.dod="ERR"
         if not valid_date(dob):
             self.err.append("US42-DOB")
-        if not Rob_funcs.birth_b4_dth(dob, dod):
-            self.err.append('check birth and death dates')
-        if not Rob_funcs.dates_b4_today(dob) and Rob_funcs.dates_b4_today(dod):
-            self.err.append('date is after current date')
-        
-        
-        
-            
+            self.dob="ERR"
+        if birth_b4_dth(self.dob, self.dod):
+            self.err.append('US03')      
+           
     def showinfo(self):
         print('{} : {}'.format("ID",self.pid))
         print('{} : {}'.format("NAME",self.name))
@@ -96,14 +100,21 @@ class family:
         self.sib_no=sibling_nos(cid)
         if not valid_date(dom):
             self.err.append("US42-DOM")
+            self.dom="ERR"
         if not valid_date(doe):
             self.err.append("US42-DOE")
-        if not Rob_funcs.marg_b4_dvors(doe, dom):
-            self.err.append('check marriage and devorce dates')
-        if not Rob_funcs.birth_b4_marg(individual.dob, dom):
-            self.err.append('check birth and marriage dates')
-        if not Rob_funcs.dates_b4_today(doe) and Rob_funcs.dates_b4_today(dom):
-            self.err.append('date is after current date')
+            self.doe="ERR"
+        ## Check if couple is married before getting a divorce
+        if marg_b4_dvors(self.doe, self.dom):
+            self.err.append('US04')
+        ## Check if husband is born before getting married
+        h=self.hid
+        w=self.wid
+        if birth_b4_marg(individuals[indi.index(h).dob], self.dom):
+            self.err.append('US02-Husb')
+        ## Check if wife is born before getting married
+        if birth_b4_marg(individuals[indi.index(w).dob], self.dom):
+            self.err.append('US02-Wife')
         
     def cout(self):
         print('{} : {}'.format("ID",self.fid))
@@ -197,9 +208,7 @@ try:
                         line=next(file)
                         words=line.split()
                         if words[1]=="DATE":
-                            dob=getdate(words[2],words[3],words[4])
-                            if not Rob_funcs.dates_b4_today(dob):
-                                
+                            dob=getdate(words[2],words[3],words[4])                                
                     elif tag == "DEAT":
                         line=next(file)
                         words=line.split()
