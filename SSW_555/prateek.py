@@ -3,7 +3,6 @@ from datetime import date
 
 from Rob_funcs import convert_2date
 
-
 def sibling_nos(sibs):
 	return len(sibs)
 
