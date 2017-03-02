@@ -23,6 +23,7 @@ from sudhansh import valid_date
 
 from prateek import sibling_nos
 from prateek import calculate_age
+from prateek import check_age
 
 def getdate(d,m,y):
     date = d+'-'+m+'-'+y
@@ -125,7 +126,10 @@ class family:
 
         # check father/mother are not too old compared to the child
         for c in self.cid:
-            if calculate_age(individuals[indi.index(h)].dob,individuals[indi.index(c)].dob) == "NA" or 
+            if not check_age(individuals[indi.index(c)].age,individuals[indi.index(h)].age,0):
+                self.err.append("US12-Father")
+            if not check_age(individuals[indi.index(c)].age,individuals[indi.index(w)].age,1):
+                self.err.append("US12-Mother")
         
     def cout(self):
         print('{} : {}'.format("ID",self.fid))
