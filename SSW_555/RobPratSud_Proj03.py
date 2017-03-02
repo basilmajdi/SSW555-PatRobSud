@@ -105,15 +105,15 @@ class family:
             self.err.append("US42-DOE")
             self.doe="ERR"
         ## Check if couple is married before getting a divorce
-        if marg_b4_dvors(self.doe, self.dom):
+        if not marg_b4_dvors(self.doe, self.dom):
             self.err.append('US04')
         ## Check if husband is born before getting married
         h=self.hid
         w=self.wid
-        if birth_b4_marg(individuals[indi.index(h)].dob, self.dom):
+        if not birth_b4_marg(individuals[indi.index(h)].dob, self.dom):
             self.err.append('US02-Husb')
         ## Check if wife is born before getting married
-        if birth_b4_marg(individuals[indi.index(w)].dob, self.dom):
+        if not birth_b4_marg(individuals[indi.index(w)].dob, self.dom):
             self.err.append('US02-Wife')
         
     def cout(self):
@@ -134,8 +134,9 @@ tags = [ "INDI" , "FAM" , "NAME" , "SEX" , "BIRT" , "DEAT" , "FAMC" , "FAMS" ,
 "DATE" , "MARR" , "HUSB" , "WIFE" , "CHIL" , "DIV" ]
 
 #filename = input ( "Enter the location of the file: " )
-filename="/Users/sudhansh/Desktop/CS-555/test1.ged" #For testing purposes
+# filename="/Users/sudhansh/Desktop/CS-555/test1.ged" #For testing purposes
 #filename="/Users/sudhansh/git/SSW_555/smith_tree1.ged" #For testing purposes
+filename="/Users/sudhansh/Desktop/CS-555/Proj01_SudhanshAggarwal_CS555.ged"
 
 ### CHECKING IF GEDCOM IS ENTERED, HELP TAKEN FORM AKSHAY SUNDERWANI ###
 path = os.getcwd ( )  # method to fetch working directory path.
