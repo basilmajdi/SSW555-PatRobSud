@@ -86,7 +86,7 @@ class family:
         self.dom="NA"
         self.doe="NA"
         self.cid=[]
-        self.sib_no=0
+        # self.sib_no=0
         self.err=[]
     
     def info(self, fid, hid, wid, dom, doe, cid):
@@ -97,7 +97,9 @@ class family:
         self.doe=doe
         self.cid=cid
         #Checking correctness of dates
-        self.sib_no=sibling_nos(cid)
+        # self.sib_no=sibling_nos(cid)
+        if sibling_nos(self.cid)>=16:
+            self.err.append("US15")
         if not valid_date(dom):
             self.err.append("US42-DOM")
             self.dom="ERR"
