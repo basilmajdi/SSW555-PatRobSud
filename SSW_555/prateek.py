@@ -27,10 +27,4 @@ def check_age(child,parent,f):
     if age>parent-child:
         return True
     else:
-        return Falsedef father_age(father_dob, child_dob):
-    if father_dob-child_dob > 80:
-         return False
-    else:    
-        return True
-
-
+        return False
