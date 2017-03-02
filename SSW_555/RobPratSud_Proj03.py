@@ -22,6 +22,7 @@ from sudhansh import sibs_no_marry
 from sudhansh import valid_date
 
 from prateek import sibling_nos
+from prateek import calculate_age
 
 def getdate(d,m,y):
     date = d+'-'+m+'-'+y
@@ -46,6 +47,7 @@ class individual:
         self.dod="NA"
         self.famc="NA"
         self.fams="NA"
+        self.age=0
         self.err=[]
 
     def info(self, pid, name, sex, dob, dod, famc, fams):
@@ -64,7 +66,10 @@ class individual:
             self.err.append("US42-DOB")
             self.dob="ERR"
         if birth_b4_dth(self.dob, self.dod):
-            self.err.append('US03')      
+            self.err.append('US03')   
+
+        # Calculate Age
+        self.age=calculate_age(self.dob,self.dod)
            
     def showinfo(self):
         print('{} : {}'.format("ID",self.pid))
@@ -76,7 +81,7 @@ class individual:
         print('{} : {}'.format("FAMS",self.fams))
 
     def update_table(self):
-        x.add_row([self.pid,self.name,self.sex,self.dob,self.dod,self.famc,self.fams,self.err])
+        x.add_row([self.pid,self.name,self.sex,self.dob,self.dod,self.age,self.famc,self.fams,self.err])
 
 class family:
     def __init__(self):
@@ -117,6 +122,10 @@ class family:
         ## Check if wife is born before getting married
         if not birth_b4_marg(individuals[indi.index(w)].dob, self.dom):
             self.err.append('US02-Wife')
+
+        # check father/mother are not too old compared to the child
+        for c in self.cid:
+            if calculate_age(individuals[indi.index(h)].dob,individuals[indi.index(c)].dob) == "NA" or 
         
     def cout(self):
         print('{} : {}'.format("ID",self.fid))
@@ -250,7 +259,7 @@ try:
 
     #UPDATE PRETTY TABLE
     x = prettytable.PrettyTable() # For people
-    x.field_names = ["I.D.","NAME","SEX","BIRTH","DEATH","FAM_C","FAM_S","ERRORS"]
+    x.field_names = ["I.D.","NAME","SEX","BIRTH","DEATH","AGE","FAM_C","FAM_S","ERRORS"]
     y = prettytable.PrettyTable() # For Families
     y.field_names = ["I.D.","HUSBAND","WIFE","MARRIAGE","MARR_END","CHILDREN","ERRORS"]
     for i in range(c_ind1):
@@ -266,10 +275,10 @@ try:
 
     #Print to output file
     with open("output.txt", 'w') as write_to:
-            print ("INDIVIDUALS", file=write_to)
-            print(x, file=write_to)
-            print ("\nFAMILIES", file=write_to)
-            print(y, file=write_to)
+        print ("INDIVIDUALS", file=write_to)
+        print(x, file=write_to)
+        print ("\nFAMILIES", file=write_to)
+        print(y, file=write_to)
 
 except FileNotFoundError:
     # File not found
