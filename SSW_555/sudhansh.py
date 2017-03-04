@@ -4,7 +4,7 @@
 
 from datetime import datetime
 from time import strftime
-#from RobPratSud_Proj03 import individual
+from RobPratSud_Proj03 import individual
 
 #noreps makes sure there are no repeated IDs
 def no_reps(group,id_, flag):
@@ -38,10 +38,10 @@ def sibs_no_marry(hid, wid, cids):
     return True
 
 #Returns true if people marry their cousins.
-def cuz_no_marry(h, w):
+#def cuz_no_marry(h, w):
 
 #Returns true is people marry their nephews or nieces.
-def dont_marry_niecenephew():
+#def dont_marry_niecenephew():
 
 #Returns true is husband isn't male/Wife isn't female
 def gender_roles(gen, flag):
@@ -54,8 +54,7 @@ def gender_roles(gen, flag):
 
 #Returns true if name and DOB combination isn't unique
 def unique_name_dob(a,b):
-    for i in length(indis):
-        for j in (i+1:lenth(indis)):
-            if a.dob == b.dob and a.name == b.name:
-                return True
+        if a.dob == b.dob and a.name == b.name:
+            return True
+
 

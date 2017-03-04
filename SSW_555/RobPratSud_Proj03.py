@@ -143,6 +143,7 @@ class family:
         if not date_check(individuals[indi.index(w)].dod, self.doe):
             # checks for divorce before death dates for wife
             self.err.append('US06-Wife')
+        #For each child in that family
         for i in self.cid: 
             if not date_check(individuals[indi.index(i)].dob, self.dom):
                 # checks for marriage of parents before birth dates  
@@ -153,7 +154,7 @@ class family:
             if not date_check(individuals[indi.index(i)].dob, individuals[indi.index(w)].dod):
                 # checks for death of parents before birth dates for mother 
                 self.err.append('US09-Deceased Mother')
-        # check father/mother are not too old compared to the child
+            # check father/mother are not too old compared to the child
             if not check_age(individuals[indi.index(i)].age,individuals[indi.index(h)].age,0):
                 self.err.append("US12-Father")
             if not check_age(individuals[indi.index(i)].age,individuals[indi.index(w)].age,1):
@@ -202,8 +203,10 @@ try:
             words=line.split()
             if words[0]=='0':
                 if words[-1] == "INDI":
+                    # to get total number of individuals in the GEDCOM
                     c_ind+=1
                 elif words[-1] == "FAM":
+                    # go get the total number of families in the GEDCOM
                     c_fam+=1
 
     # Creating an array for each; containing the exact number of objects needed
@@ -211,6 +214,8 @@ try:
     families=[family() for i in range(c_fam) ]
 
     refresh()
+    # Set all global variables to the "NA" state
+
     with open ( filename ) as file:
         # READ FILE LINE BY LINE
         for line in file:
@@ -224,6 +229,9 @@ try:
                     # Checking unique IDs
                     if no_reps(indi,iden,flag):
                         individuals[c_ind1].err.append("US22")
+
+                    # Appending indivial's ID to indi[], making easier to find this id later
+                    # We can get the loaction of the individual in individuals[] be finding it's position in the list.
                     indi.append(iden)
                     #individuals[c_ind1].showinfo()
                     c_ind1+=1
@@ -232,6 +240,9 @@ try:
                     # Checking unique IDs
                     if no_reps(famillia,iden,flag):
                         families[c_fam1].err.append("US22")
+
+                    #Appending family's ID to famillia[], making easier to find this ID later.
+                    # We can get the location of the family in families[] from it's location in the list
                     famillia.append(iden)
                     # families[c_fam1].cout()
                     c_fam1+=1                    
@@ -250,11 +261,13 @@ try:
                     elif tag == "SEX":
                         sex=words[-1]
                     elif tag == "BIRT":
+                        # Date is given in the next line, so we are going to it.
                         line=next(file)
                         words=line.split()
                         if words[1]=="DATE":
                             dob=getdate(words[2],words[3],words[4])                                
                     elif tag == "DEAT":
+                        # Date is given in the next line, so we are going to it.
                         line=next(file)
                         words=line.split()
                         if words[1]=="DATE":
@@ -270,11 +283,13 @@ try:
                     elif tag == "CHIL":
                         cid.append(words[-1])
                     elif tag == "MARR":
+                        # Date is given in the next line, so we are going to it.
                         line=next(file)
                         words=line.split()
                         if words[1]=="DATE":
                             dom=getdate(words[2],words[3],words[4])
                     elif tag == "DIV":
+                        # Date is given in the next line, so we are going to it.
                         line=next(file)
                         words=line.split()
                         if words[1]=="DATE":
@@ -296,7 +311,6 @@ try:
     for i in range(c_ind):
         for j in range( i+1: c_ind):
             unique_name_dob(individuals[i],individuals[j])
-
 
     #UPDATE PRETTY TABLE
     x = prettytable.PrettyTable() # For people
