@@ -116,17 +116,31 @@ class family:
         ## Check if husband is born before getting married
         h=self.hid
         w=self.wid
+        
         if not date_check(self.dom, individuals[indi.index(h)].dob):
             self.err.append('US02-Husb')
         ## Check if wife is born before getting married
         if not date_check(self.dom, individuals[indi.index(w)].dob):
             self.err.append('US02-Wife')
-
+        if not date_check(individuals[indi.index(h)].dod, self.dom):
+            self.err.append('US05-Husb')
+        if not date_check(individuals[indi.index(w)].dod, self.dom):
+            self.err.append('US05-Wife')
+        if not date_check(individuals[indi.index(h)].dod, self.doe):
+            self.err.append('US06-Husb')
+        if not date_check(individuals[indi.index(w)].dod, self.doe):
+            self.err.append('US06-Wife')
+        for i in self.cid: 
+            if not date_check(individuals[indi.index(i)].dob, self.dom):
+                self.err.append('US08')
+            if not date_check(individuals[indi.index(i)].dob, individuals[indi.index(h)].dod):
+                self.err.append('US09-Deceased Father')
+            if not date_check(individuals[indi.index(i)].dob, individuals[indi.index(w)].dod):
+                self.err.append('US09-Deceased Mother')
         # check father/mother are not too old compared to the child
-        for c in self.cid:
-            if not check_age(individuals[indi.index(c)].age,individuals[indi.index(h)].age,0):
+            if not check_age(individuals[indi.index(i)].age,individuals[indi.index(h)].age,0):
                 self.err.append("US12-Father")
-            if not check_age(individuals[indi.index(c)].age,individuals[indi.index(w)].age,1):
+            if not check_age(individuals[indi.index(i)].age,individuals[indi.index(w)].age,1):
                 self.err.append("US12-Mother")
         
     def cout(self):
