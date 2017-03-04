@@ -253,11 +253,19 @@ try:
 
     #Checking that siblings shouldn't marry
     for i in range(c_fam):
-        for j in range(c_fam):
-            if i != j:
-                if not sibs_no_marry(families[i].hid,families[i].wid,families[j].cid):
-                    families[i].err.append("US18")
-                    families[j].err.append("US18")
+        for j in range(i+1:c_fam):
+            if not sibs_no_marry(families[i].hid,families[i].wid,families[j].cid):
+                families[i].err.append("US18")
+                families[j].err.append("US18")
+
+    #Checking cousins don't marry
+
+    #Checking aunts/uncles don't marry nephews/nieces.
+
+    #Checking unique name and DOB
+    for i in range(c_ind):
+        for j in range( i+1: c_ind):
+            unique_name_dob(individuals[i],individuals[j])
 
 
     #UPDATE PRETTY TABLE

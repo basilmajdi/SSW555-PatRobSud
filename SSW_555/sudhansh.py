@@ -26,7 +26,7 @@ def valid_date(date_):
         else:
             return False
         raise ValueError
-
+        
     except ValueError:
         return False
 
@@ -36,3 +36,26 @@ def sibs_no_marry(hid, wid, cids):
     if hid in cids and wid in cids:
         return False
     return True
+
+#Returns true if people marry their cousins.
+def cuz_no_marry(h, w):
+
+#Returns true is people marry their nephews or nieces.
+def dont_marry_niecenephew():
+
+#Returns true is husband isn't male/Wife isn't female
+def gender_roles(gen, flag):
+    if flag==1:
+        sex='M'
+    else:
+        sex=='F'
+    if gen != sex
+        return True
+
+#Returns true if name and DOB combination isn't unique
+def unique_name_dob(a,b):
+    for i in length(indis):
+        for j in (i+1:lenth(indis)):
+            if a.dob == b.dob and a.name == b.name:
+                return True
+
