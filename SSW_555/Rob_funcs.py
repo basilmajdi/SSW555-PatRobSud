@@ -6,16 +6,16 @@ Created on Sat Feb 25 14:30:17 2017
 """
 
 from datetime import datetime
-from datetime import date
+
         
 def convert_2date(date1): #this function converts the givin date format to the required format
     return datetime.strptime(date1, '%d-%b-%Y')    
 
 def birth_b4_marg(dob, dom):# this function takes the dates of birth and marriage(if any) and 
                             # returns true if the date of marriage is before date of birth 
-    if dom == "NA" or dob == "NA": 
+    if dom == "NA" or dob == "NA" or dom == "ERR" or dob == "ERR": 
         return True
-    elif convert_2date(dom) <= convert_2date(dob):    
+    elif convert_2date(dom) < convert_2date(dob):    
         return False
     else:    
         return True
@@ -48,4 +48,24 @@ def marg_b4_dvors(doe, dom):# this function takes the dates of marriage and divo
         return False
     else:    
         return True
+
+def marg_b4_dth(dom, dod):
+    # this function checks if the date of marriage happened after death. 
+    if dom == "NA" or dod == "NA": 
+        return True
+    elif convert_2date(dod) < convert_2date(dom):    
+        return False
+    else:    
+        return True
+
+def date_check(date_big, date_small): 
+    if date_big == "NA" or date_small == "NA" or date_big == "ERR" or date_small == "ERR":
+        return False
+    elif convert_2date(date_big) < convert_2date(date_small):    
+        return False
+    else:    
+        return True
         
+    
+
+    
