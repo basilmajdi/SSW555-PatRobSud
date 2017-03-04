@@ -13,7 +13,7 @@ from datetime import datetime
 from datetime import date
 import datetime
 
-from Rob_funcs import date_check
+from Rob_funcs import date_check #this function takes two parameters, bigger date and smaller date
 
 from sudhansh import no_reps
 from sudhansh import sibs_no_marry
@@ -59,12 +59,15 @@ class individual:
         self.fams=fams
         #Checking correctness of dates
         if not valid_date(dod):
+            # checks if date format is correct and that date is not in future 
             self.err.append("US42-DOD")
             self.dod="ERR"
         if not valid_date(dob):
+            # checks if date format is correct and that date is not in future
             self.err.append("US42-DOB")
             self.dob="ERR"
         if date_check(self.dod, self.dob):
+            # checks for birth before death 
             self.err.append('US03')   
 
         # Calculate Age
@@ -84,7 +87,7 @@ class individual:
 
 class family:
     def __init__(self):
-        self.fid="NA"
+        self.fid="NA" 
         self.hid="NA"
         self.wid="NA"
         self.dom="NA"
@@ -103,39 +106,52 @@ class family:
         #Checking correctness of dates
         # self.sib_no=sibling_nos(cid)
         if sibling_nos(self.cid)>=16:
+            # checks that there are no more than 15 siblings 
             self.err.append("US15")
         if not valid_date(dom):
+            # checks if date format is correct and that date is not in future for date of marriage 
             self.err.append("US42-DOM")
             self.dom="ERR"
         if not valid_date(doe):
+            # checks if date format is correct and that date is not in future for date of divorce
             self.err.append("US42-DOE")
             self.doe="ERR"
         ## Check if couple is married before getting a divorce
         if not date_check(self.doe, self.dom):
+            #checks for divorce before marriage dates 
             self.err.append('US04')
         ## Check if husband is born before getting married
         h=self.hid
         w=self.wid
         
         if not date_check(self.dom, individuals[indi.index(h)].dob):
+            # checks for marriage before birth dates for husband 
             self.err.append('US02-Husb')
         ## Check if wife is born before getting married
         if not date_check(self.dom, individuals[indi.index(w)].dob):
+            # checks for marriage before birth dates for wife
             self.err.append('US02-Wife')
         if not date_check(individuals[indi.index(h)].dod, self.dom):
+            # checks for marriage before death dates for husband
             self.err.append('US05-Husb')
         if not date_check(individuals[indi.index(w)].dod, self.dom):
+            # checks for marriage before death dates for wife
             self.err.append('US05-Wife')
         if not date_check(individuals[indi.index(h)].dod, self.doe):
+            # checks for divorce before death dates for husband
             self.err.append('US06-Husb')
         if not date_check(individuals[indi.index(w)].dod, self.doe):
+            # checks for divorce before death dates for wife
             self.err.append('US06-Wife')
         for i in self.cid: 
             if not date_check(individuals[indi.index(i)].dob, self.dom):
+                # checks for marriage of parents before birth dates  
                 self.err.append('US08')
             if not date_check(individuals[indi.index(i)].dob, individuals[indi.index(h)].dod):
+                # checks for death of parents before birth dates for father 
                 self.err.append('US09-Deceased Father')
             if not date_check(individuals[indi.index(i)].dob, individuals[indi.index(w)].dod):
+                # checks for death of parents before birth dates for mother 
                 self.err.append('US09-Deceased Mother')
         # check father/mother are not too old compared to the child
             if not check_age(individuals[indi.index(i)].age,individuals[indi.index(h)].age,0):
