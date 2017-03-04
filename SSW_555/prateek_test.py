@@ -8,7 +8,7 @@ s2=["one","two","three","four","five","six","seven","eight","nine"] # Under 16
 s3=["one","two","three","four","five","six","seven","eight","nine","onety","twoty","threety","abcd","fourty","fivety","sixty","seventy","eightty","ninety"] # Over 16
 
 class TestMyFunctions(unittest.TestCase):
-	### TESTS FOR NO REPETITION BEGIN ###
+	### TESTS CASES FOR NO REPETITION BEGIN ###
 	def test_empty(self):
 		self.assertLess((sibling_nos(s1)),16)
 	def test_less(self):
