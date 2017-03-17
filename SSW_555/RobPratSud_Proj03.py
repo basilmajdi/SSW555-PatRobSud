@@ -125,15 +125,10 @@ class family:
         w=self.wid
 
         #Checking gender roles
-        print("BEFORE CHECKING GENDER ROLES for husb")
-        print(individuals[indi.index(h)].sex)
         if gender_roles(individuals[indi.index(h)].sex,1):
             self.err.append('US21-Husband')
-        print("BEFORE CHECKING GENDER ROLES for wife")
-        print(individuals[indi.index(w)].sex)
         if gender_roles(individuals[indi.index(w)].sex,0):
             self.err.append('US21-Wife')
-        print("AFTER CHECKING GENDER ROLES")
         
         ## Check if husband is born before getting married
         if not date_check(self.dom, individuals[indi.index(h)].dob):
@@ -189,11 +184,12 @@ class family:
 tags = [ "INDI" , "FAM" , "NAME" , "SEX" , "BIRT" , "DEAT" , "FAMC" , "FAMS" , 
 "DATE" , "MARR" , "HUSB" , "WIFE" , "CHIL" , "DIV" ]
 
+filename=input("Enter the location of the file: ")
 #filename = open ( "smith_tree1.ged" )
 #filename="/Users/sudhansh/Desktop/CS-555/test1.ged" #For testing purposes
 #filename="/Users/sudhansh/git/SSW_555/smith_tree1.ged" #For testing purposes
 #filename="/Users/sudhansh/Desktop/CS-555/Proj01_SudhanshAggarwal_CS555.ged"
-filename="/Users/sudhansh/Desktop/CS-555/Proj01_SudhanshAggarwal_CS555_2.ged"
+#filename="/Users/sudhansh/git/SSW_555/test_RPS.ged"
 
 ### CHECKING IF GEDCOM IS ENTERED, HELP TAKEN FORM AKSHAY SUNDERWANI ###
 path = os.getcwd ( )  # method to fetch working directory path.
