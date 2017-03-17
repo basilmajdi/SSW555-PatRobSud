@@ -4,6 +4,8 @@ import unittest
 from sudhansh import no_reps
 from sudhansh import valid_date
 from sudhansh import sibs_no_marry
+from sudhansh import gender_roles
+
 
 # For no rep tests
 i=["I0922","I0065","I1994","133262"]
@@ -65,6 +67,21 @@ class TestMyFunctions(unittest.TestCase):
 	def test_false(self):
 		self.assertFalse(sibs_no_marry(hid,wid,cid2))
 	#### SIBLINGS DON'T MARRY END ####
+
+	### GENDER ROLES START ###
+	def test_dad_corr(self):
+		self.assertFalse(gender_roles("M", 1))
+	def test_mom_corr(self):
+		self.assertFalse(gender_roles("F", 0))
+	def test_dad_wrong(self):
+		self.assertTrue(gender_roles("F", 1))
+	def test_mom_wrong(self):
+		self.assertTrue(gender_roles("M", 0))
+	def test_na_one(self):
+		self.assertFalse(gender_roles("NA",1))
+	def test_na_zero(self):
+		self.assertFalse(gender_roles("NA",0))
+	#### GENDER ROLES END ####
 
 def main():
 	unittest.main()

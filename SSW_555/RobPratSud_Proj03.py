@@ -18,6 +18,7 @@ from Rob_funcs import date_check #this function takes two parameters, bigger dat
 from sudhansh import no_reps
 from sudhansh import sibs_no_marry
 from sudhansh import valid_date
+from sudhansh import gender_roles
 
 from prateek import sibling_nos
 from prateek import calculate_age
@@ -66,7 +67,7 @@ class individual:
             # checks if date format is correct and that date is not in future
             self.err.append("US42-DOB")
             self.dob="ERR"
-        if date_check(self.dod, self.dob):
+        if not date_check(self.dod, self.dob):
             # checks for birth before death 
             self.err.append('US03')   
 
@@ -120,10 +121,21 @@ class family:
         if not date_check(self.doe, self.dom):
             #checks for divorce before marriage dates 
             self.err.append('US04')
-        ## Check if husband is born before getting married
         h=self.hid
         w=self.wid
+
+        #Checking gender roles
+        print("BEFORE CHECKING GENDER ROLES for husb")
+        print(individuals[indi.index(h)].sex)
+        if gender_roles(individuals[indi.index(h)].sex,1):
+            self.err.append('US21-Husband')
+        print("BEFORE CHECKING GENDER ROLES for wife")
+        print(individuals[indi.index(w)].sex)
+        if gender_roles(individuals[indi.index(w)].sex,0):
+            self.err.append('US21-Wife')
+        print("AFTER CHECKING GENDER ROLES")
         
+        ## Check if husband is born before getting married
         if not date_check(self.dom, individuals[indi.index(h)].dob):
             # checks for marriage before birth dates for husband 
             self.err.append('US02-Husb')
@@ -177,11 +189,11 @@ class family:
 tags = [ "INDI" , "FAM" , "NAME" , "SEX" , "BIRT" , "DEAT" , "FAMC" , "FAMS" , 
 "DATE" , "MARR" , "HUSB" , "WIFE" , "CHIL" , "DIV" ]
 
-filename = open ( "smith_tree1.ged" )
+#filename = open ( "smith_tree1.ged" )
 #filename="/Users/sudhansh/Desktop/CS-555/test1.ged" #For testing purposes
 #filename="/Users/sudhansh/git/SSW_555/smith_tree1.ged" #For testing purposes
 #filename="/Users/sudhansh/Desktop/CS-555/Proj01_SudhanshAggarwal_CS555.ged"
-#filename="/Users/sudhansh/Desktop/CS-555/Proj01_SudhanshAggarwal_CS555_2.ged"
+filename="/Users/sudhansh/Desktop/CS-555/Proj01_SudhanshAggarwal_CS555_2.ged"
 
 ### CHECKING IF GEDCOM IS ENTERED, HELP TAKEN FORM AKSHAY SUNDERWANI ###
 path = os.getcwd ( )  # method to fetch working directory path.
@@ -298,8 +310,8 @@ try:
 
     #Checking that siblings shouldn't marry
     for i in range(c_fam):
-        for j in range(i+1:c_fam):
-            if not sibs_no_marry(families[i].hid,families[i].wid,families[j].cid):
+        for j in range(c_fam):
+            if not sibs_no_marry(families[i].hid,families[i].wid,families[j].cid) and i!=j:
                 families[i].err.append("US18")
                 families[j].err.append("US18")
 
@@ -308,9 +320,10 @@ try:
     #Checking aunts/uncles don't marry nephews/nieces.
 
     #Checking unique name and DOB
-    for i in range(c_ind):
-        for j in range( i+1: c_ind):
-            unique_name_dob(individuals[i],individuals[j])
+    # for i in range(c_ind):
+    #     for j in range(c_ind):
+    #         if i!=j:
+    #             unique_name_dob(individuals[i],individuals[j])
 
     #UPDATE PRETTY TABLE
     x = prettytable.PrettyTable() # For people
