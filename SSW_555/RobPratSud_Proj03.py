@@ -73,7 +73,12 @@ class individual:
 
         # Calculate Age
         self.age=calculate_age(self.dob,self.dod)
-           
+        
+        #Check Age
+        if self.age > 150:
+            # checks if the age is not more than 150
+            self.err.append('US07')
+            
     def showinfo(self):
         print('{} : {}'.format("ID",self.pid))
         print('{} : {}'.format("NAME",self.name))
