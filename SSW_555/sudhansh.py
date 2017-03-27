@@ -4,7 +4,6 @@
 
 from datetime import datetime
 from time import strftime
-#from RobPratSud_Proj03 import individual
 
 #noreps makes sure there are no repeated IDs
 def no_reps(group,id_, flag):

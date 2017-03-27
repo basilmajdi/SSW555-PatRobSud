@@ -59,16 +59,16 @@ class individual:
         self.famc=famc
         self.fams=fams
         #Checking correctness of dates
-        if not valid_date(dod):
+        if not valid_date(self.dod):
             # checks if date format is correct and that date is not in future 
             self.err.append("US42-DOD")
             self.dod="ERR"
-            errors.append("ERROR: INDIVIDUAL. US-42. Check DOD for "+self.pid)
+            errors.append("ERROR: INDIVIDUAL. US-01 Future date OR US-42 Invalid date. Check DOD for "+self.pid)
         if not valid_date(dob):
             # checks if date format is correct and that date is not in future
             self.err.append("US42-DOB")
             self.dob="ERR"
-            errors.append("ERROR: INDIVIDUAL. US-42. Check DOB for "+self.pid)
+            errors.append("ERROR: INDIVIDUAL. US-01 Future date OR US-42 Invalid date. Check DOB for "+self.pid)
         if not date_check(self.dod, self.dob):
             # checks for birth before death 
             self.err.append('US03')
@@ -78,10 +78,11 @@ class individual:
         self.age=calculate_age(self.dob,self.dod)
         
         #Check Age
-        if self.age > 150:
-            # checks if the age is not more than 150
-            self.err.append('US07')
-            errors.append("ERROR: INDIVIDUAL. US-07. Age is too much "+self.pid)
+        if self.age != "NA":
+            if self.age > 150:
+                # checks if the age is not more than 150
+                self.err.append('US07')
+                errors.append("ERROR: INDIVIDUAL. US-07. Age is too much "+self.pid)
             
     def showinfo(self):
         print('{} : {}'.format("ID",self.pid))
@@ -119,22 +120,22 @@ class family:
         if sibling_nos(self.cid)>=16:
             # checks that there are no more than 15 siblings 
             self.err.append("US15")
-            errors.append("ERROR: FAMILY. US-15. Too many childern in family "+self.fid)
+            errors.append("ERROR: FAMILY. US-15. Too many children in family "+self.fid)
         if not valid_date(dom):
             # checks if date format is correct and that date is not in future for date of marriage 
             self.err.append("US42-DOM")
             self.dom="ERR"
-            errors.append("ERROR: FAMILY. US-42. Check DOM for "+self.Fid)
+            errors.append("ERROR: FAMILY. US-01 Future date OR US-42 Invalid date. Check DOM for "+self.Fid)
         if not valid_date(doe):
             # checks if date format is correct and that date is not in future for date of divorce
             self.err.append("US42-DOE")
             self.doe="ERR"
-            errors.append("ERROR: FAMILY. US-42. Check DOE for "+self.fid)
+            errors.append("ERROR: FAMILY. US-01 Future date OR US-42 Invalid date. Check DOE for "+self.fid)
         ## Check if couple is married before getting a divorce
         if not date_check(self.doe, self.dom):
             #checks for divorce before marriage dates 
             self.err.append('US04')
-            errors.append("ERROR: INDIVIDUAL. US-04. DIVORCED BEFORE MARRIAGE for "+self.fid)
+            errors.append("ERROR: FAMILY. US-04. DIVORCED BEFORE MARRIAGE for "+self.fid)
         h=self.hid
         w=self.wid
 
