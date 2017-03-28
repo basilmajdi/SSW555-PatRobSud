@@ -346,6 +346,9 @@ try:
                 errors.append("ERROR: FAMILY. US-18. People "+families[i].hid+" and "+families[i].wid+" are married in family "+families[i].fid+" and are siblings in "+families[j].fid)
 
     #Checking cousins don't marry
+    #One parent of each are siblings
+    #So I check is h.dad/mom and w.dad/mom have the same famc
+    
 
     #Checking aunts/uncles don't marry nephews/nieces.
 
