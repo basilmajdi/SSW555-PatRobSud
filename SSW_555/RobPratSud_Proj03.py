@@ -218,7 +218,8 @@ tags = [ "INDI" , "FAM" , "NAME" , "SEX" , "BIRT" , "DEAT" , "FAMC" , "FAMS" ,
 #filename="/Users/sudhansh/Desktop/CS-555/test1.ged" #For testing purposes
 #filename="/Users/sudhansh/git/SSW_555/smith_tree1.ged" #For testing purposes
 #filename="/Users/sudhansh/Desktop/CS-555/Proj01_SudhanshAggarwal_CS555.ged"
-filename="/Users/sudhansh/git/SSW_555/test_RPS.ged"
+'''filename="/Users/sudhansh/git/SSW_555/test_RPS.ged"'''
+filename = "/Users/basilmajdi/Documents/stevens_SSW/agile methods 555/555_proj/SSW555-PatRobSud/SSW_555/test_RPS.ged"
 
 ### CHECKING IF GEDCOM IS ENTERED, HELP TAKEN FORM AKSHAY SUNDERWANI ###
 path = os.getcwd ( )  # method to fetch working directory path.
@@ -368,10 +369,10 @@ try:
         families[i].update_table()
 
     #PRINT DATA
-    # print ("INDIVIDUALS")
-    # print(x)
-    # print ("\nFAMILIES")
-    # print(y)
+    print ("INDIVIDUALS")
+    print(x)
+    print ("\nFAMILIES")
+    print(y)
 
     #Print to output file
 
