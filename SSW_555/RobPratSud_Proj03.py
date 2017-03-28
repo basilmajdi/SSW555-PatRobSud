@@ -218,8 +218,8 @@ tags = [ "INDI" , "FAM" , "NAME" , "SEX" , "BIRT" , "DEAT" , "FAMC" , "FAMS" ,
 #filename="/Users/sudhansh/Desktop/CS-555/test1.ged" #For testing purposes
 #filename="/Users/sudhansh/git/SSW_555/smith_tree1.ged" #For testing purposes
 #filename="/Users/sudhansh/Desktop/CS-555/Proj01_SudhanshAggarwal_CS555.ged"
-'''filename="/Users/sudhansh/git/SSW_555/test_RPS.ged"'''
-filename = "/Users/basilmajdi/Documents/stevens_SSW/agile methods 555/555_proj/SSW555-PatRobSud/SSW_555/test_RPS.ged"
+filename="/Users/sudhansh/git/SSW_555/test_RPS.ged"
+#filename = "/Users/basilmajdi/Documents/stevens_SSW/agile methods 555/555_proj/SSW555-PatRobSud/SSW_555/test_RPS.ged"
 
 ### CHECKING IF GEDCOM IS ENTERED, HELP TAKEN FORM AKSHAY SUNDERWANI ###
 path = os.getcwd ( )  # method to fetch working directory path.
@@ -349,6 +349,34 @@ try:
     #Checking cousins don't marry
     #One parent of each are siblings
     #So I check is h.dad/mom and w.dad/mom have the same famc
+    for f in families:
+        famc1h=individuals[indi.index(f.hid)].famc
+        famc1w=individuals[indi.index(f.wid)].famc
+        #Checking both spouses have a famc
+        if famc1h != "NA" and famc1w != "NA":
+            # hf = husband's father, wm = wife's mother. rest is on the basis of this
+            hf=families[famillia.index(famc1h)].hid
+            hm=families[famillia.index(famc1h)].wid
+            wf=families[famillia.index(famc1w)].hid
+            wm=families[famillia.index(famc1w)].wid
+            list1={hf,hm}
+            list2={wf,wm}
+            listf={}
+            listw={}
+            for iden in list1:
+                if iden != "NA":
+                    listf.append(individuals[indi.index(iden)].famc)
+            for iden in list2:
+                if iden != "NA":
+                    listw.append(individuals[indi.index(iden)].famc)
+            if listf.size()>0 and listw.size()>0:
+                for iden in listf:
+                    if iden in listw:
+                        errors.append("ERROR: FAMILY. US-19 SPOUSES ARE COUSINS IN "+f.fid)
+                        break
+            #Now we check if the pair of their parents are siblings or not
+
+
     
 
     #Checking aunts/uncles don't marry nephews/nieces.
