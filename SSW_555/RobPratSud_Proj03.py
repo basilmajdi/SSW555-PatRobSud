@@ -422,22 +422,22 @@ try:
         families[i].update_table()
 
     #PRINT DATA
-    print ("INDIVIDUALS")
-    print(x)
-    print ("\nFAMILIES")
-    print(y)
-    for line in sorted(errors):
-        print(line)
+    # print ("INDIVIDUALS")
+    # print(x)
+    # print ("\nFAMILIES")
+    # print(y)
+    # for line in sorted(errors):
+    #     print(line)
 
     #Print to output file
-    # with open("output.txt", 'w') as write_to:
-    #     print ("INDIVIDUALS", file=write_to)
-    #     print(x, file=write_to)
-    #     print ("\nFAMILIES", file=write_to)
-    #     print(y, file=write_to)
-    #     print("ALL ERRORS:",file=write_to)
-    #     for line in sorted(errors):
-    #         print(line,file=write_to)
+    with open("output.txt", 'w') as write_to:
+        print ("INDIVIDUALS", file=write_to)
+        print(x, file=write_to)
+        print ("\nFAMILIES", file=write_to)
+        print(y, file=write_to)
+        print("ALL ERRORS:",file=write_to)
+        for line in sorted(errors):
+            print(line,file=write_to)
 
 except FileNotFoundError:
     # File not found
