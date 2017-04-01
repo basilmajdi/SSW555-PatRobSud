@@ -213,14 +213,12 @@ class family:
 tags = [ "INDI" , "FAM" , "NAME" , "SEX" , "BIRT" , "DEAT" , "FAMC" , "FAMS" , 
 "DATE" , "MARR" , "HUSB" , "WIFE" , "CHIL" , "DIV" ]
 
-#filename=input("Enter the location of the file: ")
-#filename = open ( "smith_tree1.ged" )
+filename=input("Enter the location of the file: ")
 #filename="/Users/sudhansh/Desktop/CS-555/test1.ged" #For testing purposes
 #filename="/Users/sudhansh/git/SSW_555/smith_tree1.ged" #For testing purposes
 #filename="/Users/sudhansh/Desktop/CS-555/Proj01_SudhanshAggarwal_CS555.ged"
 #filename="/Users/sudhansh/git/SSW_555/test_RPS.ged"
 #filename = "/Users/basilmajdi/Documents/stevens_SSW/agile methods 555/555_proj/SSW555-PatRobSud/SSW_555/test_RPS.ged"
-filename="/Users/sudhansh/Desktop/CS-555/Test-4.ged"
 
 ### CHECKING IF GEDCOM IS ENTERED, HELP TAKEN FORM AKSHAY SUNDERWANI ###
 path = os.getcwd ( )  # method to fetch working directory path.
@@ -347,6 +345,20 @@ try:
                 families[j].err.append("US18")
                 errors.append("ERROR: FAMILY. US-18. People "+families[i].hid+" and "+families[i].wid+" are married in family "+families[i].fid+" and are siblings in "+families[j].fid)
 
+    # Unique name and DOB
+    # US 23
+    # Dictionary with {k:v} as {name:dob}
+    # for each person.name, ask the dictionary for valuse of that key.
+    # if no key, it hasn't been repeated, yet.
+    # if value==dob, US 23 error.
+    us23={"name":"d.o.b."}
+    for i in individuals :
+        nom=str1 = ''.join(i.name)
+        if nom in us23.keys():
+            if (us23[nom] == i.dob):
+                errors.append("WARNING. INDIVIDUAL(S). US-23, REPEATED NAME: "+nom +" AND DOB "+i.dob)
+        us23[nom] = i.dob
+
     #Checking cousins don't marry 
     #US 19
     #One parent of each are siblings
@@ -385,23 +397,17 @@ try:
         famc1h=individuals[indi.index(f.hid)].famc
         famc1w=individuals[indi.index(f.wid)].famc
         #Checking both spouses have a famc
-        if famc1h != "NA":
+        if famc1w != "NA":
             # hf = husband's father, wm = wife's mother. rest is on the basis of this
             wf=families[famillia.index(famc1w)].hid
             wm=families[famillia.index(famc1w)].wid
             if famc1h == individuals[indi.index(wf)].famc or famc1h == individuals[indi.index(wm)].famc:
                 errors.append("ERROR: FAMILY. US-20 SPOUSES ARE aunt/nephew or uncle/niece. Check Family: "+f.fid)
-        if famc1w != "NA":
+        if famc1h != "NA":
             hf=families[famillia.index(famc1h)].hid
             hm=families[famillia.index(famc1h)].wid
             if famc1w == individuals[indi.index(hf)].famc or famc1w == individuals[indi.index(hm)].famc:
                 errors.append("ERROR: FAMILY. US-20 SPOUSES ARE aunt/nephew or uncle/niece. Check Family: "+f.fid)
-
-    #Checking unique name and DOB
-    # for i in range(c_ind):
-    #     for j in range(c_ind):
-    #         if i!=j:
-    #             unique_name_dob(individuals[i],individuals[j])
 
     #UPDATE PRETTY TABLE
     x = prettytable.PrettyTable() # For people
