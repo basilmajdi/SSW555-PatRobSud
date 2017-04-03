@@ -23,6 +23,7 @@ from sudhansh import gender_roles
 from prateek import sibling_nos
 from prateek import calculate_age
 from prateek import check_age
+from prateek import check_marriage_before14
 
 def getdate(d,m,y):
     date = d+'-'+m+'-'+y
@@ -173,8 +174,7 @@ class family:
             # checks for divorce before death dates for wife
             self.err.append('US06-Wife')
             errors.append("ERROR: FAMILY. US-06. Wife "+w+" of family "+self.fid+" divorced after dying")
-        
-         if check_marriage_before14(individuals[indi.index(h)].dob, self.dom):
+        if check_marriage_before14(individuals[indi.index(h)].dob, self.dom):
             # checks for marriage before age 14
             self.err.append('US10Husb')
             errors.append("ERROR: FAMILY. US-10 Husband "+h+" of family "+self.fid+" married before 14")
@@ -223,11 +223,11 @@ class family:
 tags = [ "INDI" , "FAM" , "NAME" , "SEX" , "BIRT" , "DEAT" , "FAMC" , "FAMS" , 
 "DATE" , "MARR" , "HUSB" , "WIFE" , "CHIL" , "DIV" ]
 
-filename=input("Enter the location of the file: ")
+#filename=input("Enter the location of the file: ")
 #filename="/Users/sudhansh/Desktop/CS-555/test1.ged" #For testing purposes
 #filename="/Users/sudhansh/git/SSW_555/smith_tree1.ged" #For testing purposes
 #filename="/Users/sudhansh/Desktop/CS-555/Proj01_SudhanshAggarwal_CS555.ged"
-#filename="/Users/sudhansh/git/SSW_555/test_RPS.ged"
+filename="/Users/sudhansh/git/SSW_555/test_RPS.ged"
 #filename = "/Users/basilmajdi/Documents/stevens_SSW/agile methods 555/555_proj/SSW555-PatRobSud/SSW_555/test_RPS.ged"
 
 ### CHECKING IF GEDCOM IS ENTERED, HELP TAKEN FORM AKSHAY SUNDERWANI ###
