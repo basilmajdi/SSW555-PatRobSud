@@ -173,6 +173,16 @@ class family:
             # checks for divorce before death dates for wife
             self.err.append('US06-Wife')
             errors.append("ERROR: FAMILY. US-06. Wife "+w+" of family "+self.fid+" divorced after dying")
+        
+         if check_marriage_before14(individuals[indi.index(h)].dob, self.dom):
+            # checks for marriage before age 14
+            self.err.append('US10Husb')
+            errors.append("ERROR: FAMILY. US-10 Husband "+h+" of family "+self.fid+" married before 14")
+        if check_marriage_before14(individuals[indi.index(w)].dob, self.dom):
+            # checks for marriage before age 14
+            self.err.append('US10Wife')
+            errors.append("ERROR: FAMILY. US-10 Wife "+w+" of family "+self.fid+" married before 14")
+        
         #For each child in that family
         for i in self.cid: 
             if not date_check(individuals[indi.index(i)].dob, self.dom):
