@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import unittest
+from Rob_funcs import upcoming_events
 
 '''from Rob_funcs import birth_b4_marg  # birth_b4_marg(dob, dom)
 from Rob_funcs import birth_b4_dth   # birth_b4_dth(dob, dod)
@@ -39,16 +40,18 @@ class TestMyFunctions(unittest.TestCase):
 	def test_mb4d_f(self):
 		self.assertTrue(marg_b4_dvors(doe2, dom2)) # DOE2=ERR, hence false
 	#### MARRIAGE BEFORE DIVORCE END ####'''
-from Rob_funcs import upcoming_events
+
  
 date_1 = '30-APR-2017'
 date_2 = '13-APR-2017'
-date_3 = '15-DEC-1987'
+date_3 = '15-APR-1987'
  
 class TestMyFunctions(unittest.TestCase): 
     def test_upcoming(self): 
         self.assertTrue(upcoming_events(date_1))
+    def test_upcoming2(self):
         self.assertTrue(upcoming_events(date_2))
+    def test_upcoming3(self):
         self.assertTrue(upcoming_events(date_3))
 
 def main():
