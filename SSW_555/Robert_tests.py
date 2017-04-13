@@ -42,9 +42,9 @@ class TestMyFunctions(unittest.TestCase):
 	#### MARRIAGE BEFORE DIVORCE END ####'''
 
  
-date_1 = '30-APR-2017'
-date_2 = '13-APR-2017'
-date_3 = '15-APR-1987'
+date_1 = "30-APR-2017"
+date_2 = '13-OCT-2017'
+date_3 = '15-APR-2017'
  
 class TestMyFunctions(unittest.TestCase): 
     def test_upcoming(self): 

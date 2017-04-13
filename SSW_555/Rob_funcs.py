@@ -5,8 +5,8 @@ Created on Sat Feb 25 14:30:17 2017
 @author: basilmajdi
 """
 
-from datetime import datetime, timedelta
-from dateutil.relativedelta import relativedelta
+from datetime import datetime, timedelta, date
+
 
 def convert_2date(date1): #this function converts the givin date format to the required format
     return datetime.strptime(date1, '%d-%b-%Y')  
@@ -67,23 +67,17 @@ def list_events(date_): # this func checks for dates that happen in the period o
 
     
 
-def upcoming_events(date_): # checks the difference between two days
-    
-    if date_ == "NA" or date_ == "ERR": 
+def upcoming_events(dt1): # checks the difference between two days
+    if dt1 == "NA" or dt1 == "ERR": 
         return True
     else:
-        date2 = convert_2date(date_)
-        target = relativedelta((date2, datetime.today())).days
-        if date2 > datetime.today() :
-            small = 0
-            big = 30
-        else:
-            small = -30
-            big = 0
-        if small <= target <= big:
-            return True
-        else:
+        dt1 = convert_2date(dt1)
+        dt2 = date.today()
+        dt3 = date(dt1.year, dt2.month, dt2.day)
+        diff = abs((dt3 - dt1).days)
+        if diff > dt1:
             return False
+
 
 
         
