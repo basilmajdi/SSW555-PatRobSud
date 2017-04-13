@@ -84,7 +84,6 @@ def upcoming_events(date_): # checks the difference between two days
             return True
         else:
             return False
-        return False
 
 
         
