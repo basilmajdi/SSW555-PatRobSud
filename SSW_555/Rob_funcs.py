@@ -5,7 +5,7 @@ Created on Sat Feb 25 14:30:17 2017
 @author: basilmajdi
 """
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
 def convert_2date(date1): #this function converts the givin date format to the required format
@@ -58,17 +58,14 @@ def date_check(date_big, date_small):
         return True'''
         
 def list_events(date_): # this func checks for dates that happen in the period of 30 days from current 
-    try:
-        if date_ == "NA" or date_ == 'ERR':
-            return True
-        if convert_2date(date_) >= datetime.now() - 30: 
-            return True
-        else:
-            return False
-        raise ValueError
-        
-    except ValueError:
+    if date_ == "NA" or date_ == 'ERR':
+        return True
+    if convert_2date(date_) < datetime.now() - timedelta(days = 30): 
         return False
+    else:
+        return True
+
+    
 
 def upcoming_events(date_): # checks the difference between two days
     
