@@ -1,70 +1,92 @@
 INDIVIDUALS
-+------------------------+--------------------------+-----+-------------+-------------+-----+------------------------+------------------------+
-|          I.D.          |           NAME           | SEX |    BIRTH    |    DEATH    | AGE |         FAM_C          |         FAM_S          |
-+------------------------+--------------------------+-----+-------------+-------------+-----+------------------------+------------------------+
-| @I6000000053444591006@ |   ['Gajar', '/Goyal/']   |  M  | 13-OCT-1992 |      NA     |  24 | @F6000000053445009841@ |           NA           |
-|      @IND03US15@       |    ['DAD', '/TWIN/']     |  M  | 13-OCT-1950 | 13-NOV-1990 |  40 |           NA           |      @FAM01US15@       |
-|      @IND04US15@       |    ['MOM', '/TWIN/']     |  F  | 13-OCT-1951 |      NA     |  65 |           NA           |      @FAM01US15@       |
-|      @IND01US18@       |    ['BRO', '/TWIN/']     |  M  |     ERR     |      NA     |  NA |      @FAM01US15@       |      @FAM02US18@       |
-|      @IND02US18@       |    ['SIS', '/TWIN/']     |  F  | 30-OCT-1990 |      NA     |  26 |      @FAM01US15@       |      @FAM02US18@       |
-|      @IND05US15@       |    ['KID1', '/TWIN/']    |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-|      @IND06US15@       |    ['KID2', '/TWIN/']    |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-|      @IND07US15@       |    ['KID3', '/TWIN/']    |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-|      @IND08US15@       |    ['KID4', '/TWIN/']    |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-|      @IND09US15@       |    ['KID5', '/TWIN/']    |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-|      @IND10US15@       |    ['KID6', '/TWIN/']    |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-|      @IND11US15@       |   ['KID6.5', '/TWIN/']   |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-|      @IND12US15@       |    ['KID7', '/TWIN/']    |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-|      @IND13US15@       |    ['KID8', '/TWIN/']    |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-|      @IND14US15@       |    ['KID9', '/TWIN/']    |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-|      @IND15US15@       |   ['KID10', '/TWIN/']    |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-|      @IND16US15@       |   ['KID13', '/TWIN/']    |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-|      @IND17US15@       |   ['KID112', '/TWIN/']   |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-|      @IND18US15@       |   ['KID18', '/TWIN/']    |  NA |      NA     |      NA     |  NA |      @FAM01US15@       |           NA           |
-| @I6000000053444591006@ |  ['Samosa', '/Goyal/']   |  F  | 19-DEC-1972 |      NA     |  44 |           NA           | @F6000000053445009841@ |
-| @I6000000053445009836@ |   ['Pulao', '/Goyal/']   |  M  | 21-AUG-1968 |      NA     |  48 |           NA           | @F6000000053445009841@ |
-| @I6000000053444324260@ |   ['Aloo', '/Goyal/']    |  F  | 21-JUN-1990 |      NA     |  26 | @F6000000053445009841@ | @F6000000053445052862@ |
-| @I6000000053445052859@ |   ['Bhindi', '/Garg/']   |  F  |  1-JAN-1890 |      NA     | 127 | @F6000000053444908019@ | @F6000000053445052862@ |
-| @I6000000053445019089@ |   ['Kheer', '/Garg/']    |  F  | 22-APR-2016 |      NA     |  0  | @F6000000053445052862@ |           NA           |
-| @I6000000053444908016@ | ['Khamboocha', '/Garg/'] |  M  | 16-DEC-1967 |      NA     |  49 |           NA           | @F6000000053444908019@ |
-| @I6000000053444944010@ |   ['Rajma', '/Garg/']    |  F  |  5-MAY-1988 | 19-MAR-1986 |  -3 |           NA           | @F6000000053444908019@ |
-| @I6000000053445078936@ |   ['Channa', '/Garg/']   |  M  | 16-JUL-1773 |      NA     | 243 |           NA           | @F6000000053445078939@ |
-| @I6000000053455703172@ |  ['Tamatar', '/Garg/']   |  F  | 18-SEP-1993 |      NA     |  23 | @F6000000053445078939@ |           NA           |
-+------------------------+--------------------------+-----+-------------+-------------+-----+------------------------+------------------------+
++--------------+------------------------------------+-----+-------------+-------------+-----+--------------+--------------+
+|     I.D.     |                NAME                | SEX |    BIRTH    |    DEATH    | AGE |    FAM_C     |    FAM_S     |
++--------------+------------------------------------+-----+-------------+-------------+-----+--------------+--------------+
+|  @US32IND1@  |       ['/BROCOLI', '/KALE']        |  NA | 13-OCT-1999 |      NA     |  17 |      NA      |      NA      |
+|  @US23IND2@  |       ['/BROCOLI', '/KALE']        |  NA | 13-OCT-1999 |      NA     |  17 |      NA      |      NA      |
+| @IND03US15@  |         ['DAD', '/TWIN/']          |  M  | 13-OCT-1950 | 13-NOV-1990 |  40 |      NA      | @FAM01US15@  |
+| @IND04US15@  |         ['MOM', '/TWIN/']          |  F  | 13-OCT-1951 |      NA     |  65 |      NA      | @FAM01US15@  |
+| @IND01US18@  |         ['BRO', '/TWIN/']          |  M  |     ERR     |      NA     |  NA | @FAM01US15@  | @FAM02US18@  |
+| @IND02US18@  |         ['SIS', '/TWIN/']          |  F  | 30-OCT-1990 |      NA     |  26 | @FAM01US15@  | @FAM02US18@  |
+| @IND05US15@  |         ['KID1', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND06US15@  |         ['KID2', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND07US15@  |         ['KID3', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND08US15@  |         ['KID4', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND09US15@  |         ['KID5', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND10US15@  |         ['KID6', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND11US15@  |        ['KID6.5', '/TWIN/']        |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND12US15@  |         ['KID7', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND13US15@  |         ['KID8', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND14US15@  |         ['KID9', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND15US15@  |        ['KID10', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND16US15@  |        ['KID13', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND17US15@  |        ['KID112', '/TWIN/']        |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND18US15@  |        ['KID18', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+|     @I1@     |       ['Adam', '/Levaine/']        |  M  |  8-MAY-1973 | 22-AUG-1972 |  -1 |      NA      |     @F1@     |
+|     @I2@     | ['Amanda', 'Levaine', '/Levaine/'] |  F  |  1-AUG-1978 |      NA     |  38 |      NA      |     @F1@     |
+|     @I3@     |      ['Potato', '/Levaine/']       |  F  | 25-JUL-1983 |      NA     |  33 |     @F1@     |     @F2@     |
+|     @I4@     |     ['Carrot', '/McDouggal/']      |  M  | 28-NOV-1991 |      NA     |  25 |     @F3@     |     @F2@     |
+|     @I5@     |    ['Blueberry', '/McDouggal/']    |  M  | 12-DEC-1912 |      NA     | 104 |     @F4@     |     @F3@     |
+|     @I6@     |   ['Strawberry', '/McDouggal/']    |  F  |      NA     |      NA     |  NA |      NA      |     @F3@     |
+|     @I7@     |     ['Rihanna', '/McDouggal/']     |  M  |     ERR     |      NA     |  NA |     @F2@     |      NA      |
+|     @I8@     |     ['Raddish', '/McDouggal/']     |  F  |  1-NOV-2000 |      NA     |  16 |     @F3@     |     @F5@     |
+|     @I9@     |       ['David', '/Gratoon/']       |  M  | 22-OCT-2016 | 21-SEP-1999 | -18 |      NA      |     @F5@     |
+|    @I10@     |       ['Michael', '/Adams/']       |  M  |  1-JAN-1801 |      NA     | 216 |      NA      |     @F4@     |
+|    @I11@     |      ['Meghan', '/Trainor/']       |  F  | 29-MAY-1800 | 11-DEC-1912 | 112 |      NA      |     @F4@     |
+| @FAM4US20I1@ |        ['/LINKIN', '/PARK']        |  NA |      NA     |      NA     |  NA |      NA      | @FAM4US20F1@ |
+| @FAM4US20I2@ |     ['/LINK-THROUGH', '/PARK']     |  NA |      NA     |      NA     |  NA |      NA      | @FAM4US20F1@ |
+| @FAM4US20I3@ |        ['/LINKOUT', 'PARK']        |  NA |      NA     |      NA     |  NA | @FAM4US20F1@ | @FAM4US20F3@ |
+| @FAM4US20I4@ |      ['/LINK-WITH', '/PARK']       |  NA |      NA     |      NA     |  NA | @FAM4US20F1@ | @FAM4US20F2@ |
+| @FAM4US20I5@ |      ['/SODIUM', '/CHLORIDE']      |  NA |      NA     |      NA     |  NA |      NA      | @FAM4US20F2@ |
+| @FAM4US20I6@ |     ['POTASSIUM', '/CHLORIDE']     |  NA |      NA     |      NA     |  NA | @FAM4US20F2@ | @FAM4US20F3@ |
++--------------+------------------------------------+-----+-------------+-------------+-----+--------------+--------------+
 
 FAMILIES
-+------------------------+------------------------+------------------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|          I.D.          |        HUSBAND         |          WIFE          |   MARRIAGE  |   MARR_END  |                                                                                                                     CHILDREN                                                                                                                     |
-+------------------------+------------------------+------------------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| @F6000000053444908019@ | @I6000000053445009836@ | @I6000000053444591006@ |      NA     |      NA     |                                                                                               ['@I6000000053444324260@', '@I6000000053444591006@']                                                                                               |
-|      @FAM01US15@       |      @IND04US15@       |      @IND03US15@       | 16-NOV-1990 | 15-NOV-1990 | ['@IND02US18@', '@IND01US18@', '@IND05US15@', '@IND06US15@', '@IND07US15@', '@IND08US15@', '@IND09US15@', '@IND10US15@', '@IND11US15@', '@IND12US15@', '@IND13US15@', '@IND14US15@', '@IND15US15@', '@IND16US15@', '@IND17US15@', '@IND18US15@'] |
-|      @FAM02US18@       |      @IND01US18@       |      @IND02US18@       |      NA     |      NA     |                                                                                                                        []                                                                                                                        |
-| @F6000000053444908019@ | @I6000000053445052859@ | @I6000000053444324260@ |      NA     |      NA     |                                                                                                            ['@I6000000053445019089@']                                                                                                            |
-| @F6000000053444908019@ | @I6000000053444908016@ | @I6000000053444944010@ | 23-DEC-1987 |      NA     |                                                                                                            ['@I6000000053445052859@']                                                                                                            |
-| @F6000000053445078939@ | @I6000000053444908016@ | @I6000000053445078936@ | 16-NOV-1990 |      NA     |                                                                                                            ['@I6000000053455703172@']                                                                                                            |
-+------------------------+------------------------+------------------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------+--------------+--------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|     I.D.     |   HUSBAND    |     WIFE     |   MARRIAGE  |   MARR_END  |                                                                                                                     CHILDREN                                                                                                                     |
++--------------+--------------+--------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| @FAM4US20F1@ | @FAM4US20I1@ | @FAM4US20I2@ |      NA     |      NA     |                                                                                                         ['@FAM4US20I3@', '@FAM4US20I4@']                                                                                                         |
+| @FAM4US20F2@ | @FAM4US20I3@ | @FAM4US20I5@ |      NA     |      NA     |                                                                                                                 ['@FAM4US20I6@']                                                                                                                 |
+| @FAM4US20F3@ | @FAM4US20I6@ | @FAM4US20I4@ |      NA     |      NA     |                                                                                                                        []                                                                                                                        |
+|     @F1@     |     @I1@     |     @I2@     | 19-AUG-1989 |      NA     |                                                                                                                     ['@I3@']                                                                                                                     |
+|     @F2@     |     @I4@     |     @I3@     |      NA     |      NA     |                                                                                                                     ['@I7@']                                                                                                                     |
+|     @F3@     |     @I5@     |     @I6@     | 28-OCT-2000 |      NA     |                                                                                                                 ['@I4@', '@I8@']                                                                                                                 |
+|     @F4@     |    @I10@     |    @I11@     |      NA     |      NA     |                                                                                                                     ['@I5@']                                                                                                                     |
+| @FAM01US15@  | @IND04US15@  | @IND03US15@  | 16-NOV-1990 | 15-NOV-1990 | ['@IND02US18@', '@IND01US18@', '@IND05US15@', '@IND06US15@', '@IND07US15@', '@IND08US15@', '@IND09US15@', '@IND10US15@', '@IND11US15@', '@IND12US15@', '@IND13US15@', '@IND14US15@', '@IND15US15@', '@IND16US15@', '@IND17US15@', '@IND18US15@'] |
+| @FAM02US18@  | @IND01US18@  | @IND02US18@  |      NA     |      NA     |                                                                                                                        []                                                                                                                        |
+|     @F5@     |     @I9@     |     @I8@     |  1-OCT-2016 | 30-SEP-2016 |                                                                                                                        []                                                                                                                        |
++--------------+--------------+--------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ALL ERRORS:
-ERROR: FAMILY. US-02. Wife @I6000000053444944010@ of family @F6000000053444908019@ married before being born
+ERROR: FAMILY. US-02. Husband @I9@ of family @F5@ married before being born
+ERROR: FAMILY. US-04. DIVORCED BEFORE MARRIAGE for @F5@
 ERROR: FAMILY. US-04. DIVORCED BEFORE MARRIAGE for @FAM01US15@
-ERROR: FAMILY. US-05. Wife @I6000000053444944010@ of family @F6000000053444908019@ married after dying
+ERROR: FAMILY. US-05. Husband @I1@ of family @F1@ married after dying
+ERROR: FAMILY. US-05. Husband @I9@ of family @F5@ married after dying
 ERROR: FAMILY. US-05. Wife @IND03US15@ of family @FAM01US15@ married after dying
+ERROR: FAMILY. US-06. Husband @I9@ of family @F5@ divorced after dying
 ERROR: FAMILY. US-06. Wife @IND03US15@ of family @FAM01US15@ divorced after dying
-ERROR: FAMILY. US-08. child @I6000000053445052859@ of family @F6000000053444908019@ born before parents marrying
+ERROR: FAMILY. US-08. child @I3@ of family @F1@ born before parents marrying
+ERROR: FAMILY. US-08. child @I4@ of family @F3@ born before parents marrying
 ERROR: FAMILY. US-08. child @IND02US18@ of family @FAM01US15@ born before parents marrying
-ERROR: FAMILY. US-09. child @I6000000053445052859@ of family @F6000000053444908019@ born significantly after the mother @I6000000053444944010@ died
 ERROR: FAMILY. US-09. child @IND02US18@ of family @FAM01US15@ born significantly after the mother @IND03US15@ died
-ERROR: FAMILY. US-12. child @I6000000053445019089@ of family @F6000000053444908019@ too young for father @I6000000053445052859@
-ERROR: FAMILY. US-12. child @I6000000053455703172@ of family @F6000000053445078939@ too young for mother @I6000000053445078936@
+ERROR: FAMILY. US-10 Husband @I9@ of family @F5@ married before 14
+ERROR: FAMILY. US-10 Wife @I2@ of family @F1@ married before 14
+ERROR: FAMILY. US-12. child @I5@ of family @F4@ too young for father @I10@
+ERROR: FAMILY. US-12. child @I8@ of family @F3@ too young for father @I5@
 ERROR: FAMILY. US-15. Too many children in family @FAM01US15@
 ERROR: FAMILY. US-18. People @IND01US18@ and @IND02US18@ are married in family @FAM02US18@ and are siblings in @FAM01US15@
-ERROR: FAMILY. US-21. Check gender of husband; @I6000000053445052859@ of family @F6000000053444908019@
+ERROR: FAMILY. US-19 SPOUSES ARE COUSINS. Check Family: @F2@
+ERROR: FAMILY. US-19 SPOUSES ARE COUSINS. Check Family: @FAM02US18@
+ERROR: FAMILY. US-19 SPOUSES ARE COUSINS. Check Family: @FAM4US20F3@
+ERROR: FAMILY. US-20 SPOUSES ARE aunt/nephew or uncle/niece. Check Family: @F3@
+ERROR: FAMILY. US-20 SPOUSES ARE aunt/nephew or uncle/niece. Check Family: @F5@
+ERROR: FAMILY. US-20 SPOUSES ARE aunt/nephew or uncle/niece. Check Family: @FAM4US20F2@
+ERROR: FAMILY. US-20 SPOUSES ARE aunt/nephew or uncle/niece. Check Family: @FAM4US20F3@
 ERROR: FAMILY. US-21. Check gender of husband; @IND04US15@ of family @FAM01US15@
-ERROR: FAMILY. US-21. Check gender of wife; @I6000000053444591006@ of family @F6000000053444908019@
-ERROR: FAMILY. US-21. Check gender of wife; @I6000000053445078936@ of family @F6000000053445078939@
 ERROR: FAMILY. US-21. Check gender of wife; @IND03US15@ of family @FAM01US15@
-ERROR: FAMILY. US-22. Family ID @F6000000053444908019@ not unique
-ERROR: FAMILY. US-22. Family ID @F6000000053444908019@ not unique
+ERROR: INDIVIDUAL. US-01 Future date OR US-42 Invalid date. Check DOB for @I7@
 ERROR: INDIVIDUAL. US-01 Future date OR US-42 Invalid date. Check DOB for @IND01US18@
-ERROR: INDIVIDUAL. US-03. DOB after DOB for @I6000000053444944010@
-ERROR: INDIVIDUAL. US-07. Age is too much @I6000000053445078936@
-ERROR: INDIVIDUAL. US-22. Individual ID @I6000000053444591006@ not unique
+ERROR: INDIVIDUAL. US-03. DOB after DOB for @I1@
+ERROR: INDIVIDUAL. US-03. DOB after DOB for @I9@
+ERROR: INDIVIDUAL. US-07. Age is too much @I10@
+WARNING. INDIVIDUAL(S). US-23, REPEATED NAME: /BROCOLI/KALE AND DOB 13-OCT-1999

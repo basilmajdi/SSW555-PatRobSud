@@ -23,6 +23,7 @@ from sudhansh import gender_roles
 from prateek import sibling_nos
 from prateek import calculate_age
 from prateek import check_age
+from prateek import check_marriage_before14
 
 def getdate(d,m,y):
     date = d+'-'+m+'-'+y
@@ -173,6 +174,15 @@ class family:
             # checks for divorce before death dates for wife
             self.err.append('US06-Wife')
             errors.append("ERROR: FAMILY. US-06. Wife "+w+" of family "+self.fid+" divorced after dying")
+        if check_marriage_before14(individuals[indi.index(h)].dob, self.dom):
+            # checks for marriage before age 14
+            self.err.append('US10Husb')
+            errors.append("ERROR: FAMILY. US-10 Husband "+h+" of family "+self.fid+" married before 14")
+        if check_marriage_before14(individuals[indi.index(w)].dob, self.dom):
+            # checks for marriage before age 14
+            self.err.append('US10Wife')
+            errors.append("ERROR: FAMILY. US-10 Wife "+w+" of family "+self.fid+" married before 14")
+        
         #For each child in that family
         for i in self.cid: 
             if not date_check(individuals[indi.index(i)].dob, self.dom):
@@ -214,12 +224,11 @@ tags = [ "INDI" , "FAM" , "NAME" , "SEX" , "BIRT" , "DEAT" , "FAMC" , "FAMS" ,
 "DATE" , "MARR" , "HUSB" , "WIFE" , "CHIL" , "DIV" ]
 
 #filename=input("Enter the location of the file: ")
-#filename = open ( "smith_tree1.ged" )
 #filename="/Users/sudhansh/Desktop/CS-555/test1.ged" #For testing purposes
 #filename="/Users/sudhansh/git/SSW_555/smith_tree1.ged" #For testing purposes
 #filename="/Users/sudhansh/Desktop/CS-555/Proj01_SudhanshAggarwal_CS555.ged"
-'''filename="/Users/sudhansh/git/SSW_555/test_RPS.ged"'''
-filename = "/Users/basilmajdi/Documents/stevens_SSW/agile methods 555/555_proj/SSW555-PatRobSud/SSW_555/test_RPS.ged"
+filename="/Users/sudhansh/git/SSW_555/test_RPS.ged"
+#filename = "/Users/basilmajdi/Documents/stevens_SSW/agile methods 555/555_proj/SSW555-PatRobSud/SSW_555/test_RPS.ged"
 
 ### CHECKING IF GEDCOM IS ENTERED, HELP TAKEN FORM AKSHAY SUNDERWANI ###
 path = os.getcwd ( )  # method to fetch working directory path.
@@ -346,15 +355,69 @@ try:
                 families[j].err.append("US18")
                 errors.append("ERROR: FAMILY. US-18. People "+families[i].hid+" and "+families[i].wid+" are married in family "+families[i].fid+" and are siblings in "+families[j].fid)
 
-    #Checking cousins don't marry
+    # Unique name and DOB
+    # US 23
+    # Dictionary with {k:v} as {name:dob}
+    # for each person.name, ask the dictionary for valuse of that key.
+    # if no key, it hasn't been repeated, yet.
+    # if value==dob, US 23 error.
+    us23={"name":"d.o.b."}
+    for i in individuals :
+        nom=str1 = ''.join(i.name)
+        if nom in us23.keys():
+            if (us23[nom] == i.dob):
+                errors.append("WARNING. INDIVIDUAL(S). US-23, REPEATED NAME: "+nom +" AND DOB "+i.dob)
+        us23[nom] = i.dob
 
-    #Checking aunts/uncles don't marry nephews/nieces.
+    #Checking cousins don't marry 
+    #US 19
+    #One parent of each are siblings
+    #So I check is h.dad/mom and w.dad/mom have the same famc
+    for f in families:
+        famc1h=individuals[indi.index(f.hid)].famc
+        famc1w=individuals[indi.index(f.wid)].famc
+        #Checking both spouses have a famc
+        if famc1h != "NA" and famc1w != "NA":
+            # hf = husband's father, wm = wife's mother. rest is on the basis of this
+            hf=families[famillia.index(famc1h)].hid
+            hm=families[famillia.index(famc1h)].wid
+            wf=families[famillia.index(famc1w)].hid
+            wm=families[famillia.index(famc1w)].wid
+            list1=[hf,hm]
+            list2=[wf,wm]
+            listf=[]
+            listw=[]
+            for iden in list1:
+                if iden in indi and iden != "NA":
+                    listf.append(individuals[indi.index(iden)].famc)
+            for iden in list2:
+                if iden in indi and iden != "NA":
+                    listw.append(individuals[indi.index(iden)].famc)
+            #Now we check if the pair of their parents are siblings or not
+            if len(listf)>0 and len(listw)>0:
+                for iden in listf:
+                    if iden in listw:
+                        errors.append("ERROR: FAMILY. US-19 SPOUSES ARE COUSINS. Check Family: "+f.fid)
+                        break
 
-    #Checking unique name and DOB
-    # for i in range(c_ind):
-    #     for j in range(c_ind):
-    #         if i!=j:
-    #             unique_name_dob(individuals[i],individuals[j])
+    #Checking aunts/uncles don't marry their nephews/neices
+    # US 20
+    #Check if parent of is spouse has same FAMC
+    for f in families:
+        famc1h=individuals[indi.index(f.hid)].famc
+        famc1w=individuals[indi.index(f.wid)].famc
+        #Checking both spouses have a famc
+        if famc1w != "NA":
+            # hf = husband's father, wm = wife's mother. rest is on the basis of this
+            wf=families[famillia.index(famc1w)].hid
+            wm=families[famillia.index(famc1w)].wid
+            if famc1h == individuals[indi.index(wf)].famc or famc1h == individuals[indi.index(wm)].famc:
+                errors.append("ERROR: FAMILY. US-20 SPOUSES ARE aunt/nephew or uncle/niece. Check Family: "+f.fid)
+        if famc1h != "NA":
+            hf=families[famillia.index(famc1h)].hid
+            hm=families[famillia.index(famc1h)].wid
+            if famc1w == individuals[indi.index(hf)].famc or famc1w == individuals[indi.index(hm)].famc:
+                errors.append("ERROR: FAMILY. US-20 SPOUSES ARE aunt/nephew or uncle/niece. Check Family: "+f.fid)
 
     #UPDATE PRETTY TABLE
     x = prettytable.PrettyTable() # For people
@@ -369,13 +432,14 @@ try:
         families[i].update_table()
 
     #PRINT DATA
-    print ("INDIVIDUALS")
-    print(x)
-    print ("\nFAMILIES")
-    print(y)
+    # print ("INDIVIDUALS")
+    # print(x)
+    # print ("\nFAMILIES")
+    # print(y)
+    # for line in sorted(errors):
+    #     print(line)
 
     #Print to output file
-
     with open("output.txt", 'w') as write_to:
         print ("INDIVIDUALS", file=write_to)
         print(x, file=write_to)

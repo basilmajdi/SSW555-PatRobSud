@@ -27,3 +27,12 @@ def check_age(child,parent,f):
         return True
     else:
         return False
+
+def check_marriage_before14(dob,dom):
+    if dob == "NA" or dob == "ERR" or dom == "NA" or dom == "ERR":
+        return False
+    d=calculate_age(dob,dom)
+    if d == "NA" or d>14:    
+        return False
+    else:    
+        return True
