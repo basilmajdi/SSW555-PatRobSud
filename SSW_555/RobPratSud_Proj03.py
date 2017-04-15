@@ -13,7 +13,9 @@ from datetime import datetime
 from datetime import date
 import datetime
 
-from Rob_funcs import date_check #this function takes two parameters, bigger date and smaller date
+from Rob_funcs import date_check #this function takes two parameters, bigger date and smaller 
+from Rob_funcs import list_events
+from Rob_funcs import upcoming_events
 
 from sudhansh import no_reps
 from sudhansh import sibs_no_marry
@@ -73,7 +75,16 @@ class individual:
         if not date_check(self.dod, self.dob):
             # checks for birth before death 
             self.err.append('US03')
-            errors.append("ERROR: INDIVIDUAL. US-03. DOB after DOB for "+self.pid)   
+            errors.append("ERROR: INDIVIDUAL. US-03. DOB after DOB for "+self.pid)
+
+        if list_events(self.dob):
+            us35.append(""+ self.pid + "    " + ''.join(self.name) + "    " + self.dob)
+
+        if list_events(self.dod):
+            us36.append("" +self.pid + "    " + ''.join(self.name) + "    " + self.dod)
+
+        if upcoming_events(self.dob):
+            us38.append(self.pid + "    " + ''.join(self.name) + "    " + self.dob)
 
         # Calculate Age
         self.age=calculate_age(self.dob,self.dod)
@@ -127,6 +138,10 @@ class family:
             self.err.append("US42-DOM")
             self.dom="ERR"
             errors.append("ERROR: FAMILY. US-01 Future date OR US-42 Invalid date. Check DOM for "+self.Fid)
+        
+        if upcoming_events(self.dom):
+            us39.append(self.fid + "    " + self.dom)
+        
         if not valid_date(doe):
             # checks if date format is correct and that date is not in future for date of divorce
             self.err.append("US42-DOE")
@@ -224,11 +239,7 @@ tags = [ "INDI" , "FAM" , "NAME" , "SEX" , "BIRT" , "DEAT" , "FAMC" , "FAMS" ,
 "DATE" , "MARR" , "HUSB" , "WIFE" , "CHIL" , "DIV" ]
 
 #filename=input("Enter the location of the file: ")
-#filename="/Users/sudhansh/Desktop/CS-555/test1.ged" #For testing purposes
-#filename="/Users/sudhansh/git/SSW_555/smith_tree1.ged" #For testing purposes
-#filename="/Users/sudhansh/Desktop/CS-555/Proj01_SudhanshAggarwal_CS555.ged"
 filename="/Users/sudhansh/git/SSW_555/test_RPS.ged"
-#filename = "/Users/basilmajdi/Documents/stevens_SSW/agile methods 555/555_proj/SSW555-PatRobSud/SSW_555/test_RPS.ged"
 
 ### CHECKING IF GEDCOM IS ENTERED, HELP TAKEN FORM AKSHAY SUNDERWANI ###
 path = os.getcwd ( )  # method to fetch working directory path.
@@ -242,6 +253,14 @@ indi=[] #List of all individual IDs
 famillia=[] #List of all family IDs
 
 errors=[] #list will contain all errors present in the gedcom
+us35=[]
+us36=[]
+us38=[]
+us39=[]
+us35.append("US35 - RECENT BIRTHS")
+us36.append("US36 - RECENT DEATHS")
+us38.append("US38 - UPCOMING BIRTHDAYS")
+us39.append("US39 - UPCOMING ANNIVERSARIES")
 
 c_ind = c_fam = 0 # for counting the total no.s of individuals and families resp
 c_ind1 = c_fam1 = 0 # for keeping track of indi/fams
@@ -431,20 +450,25 @@ try:
     for i in range(c_fam1):
         families[i].update_table()
 
-    #PRINT DATA
-    # print ("INDIVIDUALS")
-    # print(x)
-    # print ("\nFAMILIES")
-    # print(y)
-    # for line in sorted(errors):
-    #     print(line)
-
     #Print to output file
     with open("output.txt", 'w') as write_to:
         print ("INDIVIDUALS", file=write_to)
         print(x, file=write_to)
         print ("\nFAMILIES", file=write_to)
         print(y, file=write_to)
+        print()
+        for line in us35:
+            print(line,file=write_to)
+        print()
+        for line in us36:
+            print(line,file=write_to)
+        print()
+        for line in us38:
+            print(line,file=write_to)
+        print()
+        for line in us39:
+            print(line,file=write_to)
+        print()
         print("ALL ERRORS:",file=write_to)
         for line in sorted(errors):
             print(line,file=write_to)
