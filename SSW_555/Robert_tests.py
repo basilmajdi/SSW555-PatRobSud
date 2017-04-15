@@ -2,6 +2,7 @@
 
 import unittest
 from Rob_funcs import upcoming_events
+from Rob_funcs import list_events
 
 '''from Rob_funcs import birth_b4_marg  # birth_b4_marg(dob, dom)
 from Rob_funcs import birth_b4_dth   # birth_b4_dth(dob, dod)
@@ -43,16 +44,26 @@ class TestMyFunctions(unittest.TestCase):
 
  
 date_1 = "30-APR-2017"
-date_2 = '13-OCT-2017'
+date_2 = '13-OCT-2016'
 date_3 = '15-APR-2017'
  
 class TestMyFunctions(unittest.TestCase): 
     def test_upcoming(self): 
         self.assertTrue(upcoming_events(date_1))
     def test_upcoming2(self):
-        self.assertTrue(upcoming_events(date_2))
+        self.assertFalse(upcoming_events(date_2))
     def test_upcoming3(self):
         self.assertTrue(upcoming_events(date_3))
+    def test_upcoming4(self):
+	    self.assertFalse(upcoming_events("NA"))
+    def test_upcoming5(self):
+        self.assertFalse(upcoming_events("ERR"))
+    def test_past(self):
+    	self.assertTrue(list_events(date_1))
+    def test_past2(self):
+    	self.assertFalse(list_events(date_2))
+    def test_past3(self):
+    	self.assertTrue(list_events(date_3))
 
 def main():
 	unittest.main()
