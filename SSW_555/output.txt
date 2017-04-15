@@ -16,12 +16,12 @@ INDIVIDUALS
 | @IND10US15@  |         ['KID6', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
 | @IND11US15@  |        ['KID6.5', '/TWIN/']        |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
 | @IND12US15@  |         ['KID7', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
-| @IND13US15@  |         ['KID8', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND13US15@  |         ['KID8', '/TWIN/']         |  NA | 20-OCT-1951 |      NA     |  65 | @FAM01US15@  |      NA      |
 | @IND14US15@  |         ['KID9', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
-| @IND15US15@  |        ['KID10', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND15US15@  |        ['KID10', '/TWIN/']         |  NA | 15-APR-2017 |      NA     |  -1 | @FAM01US15@  |      NA      |
 | @IND16US15@  |        ['KID13', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
 | @IND17US15@  |        ['KID112', '/TWIN/']        |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
-| @IND18US15@  |        ['KID18', '/TWIN/']         |  NA |      NA     |      NA     |  NA | @FAM01US15@  |      NA      |
+| @IND18US15@  |        ['KID18', '/TWIN/']         |  NA |      NA     | 13-APR-2017 |  NA | @FAM01US15@  |      NA      |
 |     @I1@     |       ['Adam', '/Levaine/']        |  M  |  8-MAY-1973 | 22-AUG-1972 |  -1 |      NA      |     @F1@     |
 |     @I2@     | ['Amanda', 'Levaine', '/Levaine/'] |  F  |  1-AUG-1978 |      NA     |  38 |      NA      |     @F1@     |
 |     @I3@     |      ['Potato', '/Levaine/']       |  F  | 25-JUL-1983 |      NA     |  33 |     @F1@     |     @F2@     |
@@ -45,7 +45,7 @@ FAMILIES
 +--------------+--------------+--------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |     I.D.     |   HUSBAND    |     WIFE     |   MARRIAGE  |   MARR_END  |                                                                                                                     CHILDREN                                                                                                                     |
 +--------------+--------------+--------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| @FAM4US20F1@ | @FAM4US20I1@ | @FAM4US20I2@ |      NA     |      NA     |                                                                                                         ['@FAM4US20I3@', '@FAM4US20I4@']                                                                                                         |
+| @FAM4US20F1@ | @FAM4US20I1@ | @FAM4US20I2@ | 19-APR-1989 |      NA     |                                                                                                         ['@FAM4US20I3@', '@FAM4US20I4@']                                                                                                         |
 | @FAM4US20F2@ | @FAM4US20I3@ | @FAM4US20I5@ |      NA     |      NA     |                                                                                                                 ['@FAM4US20I6@']                                                                                                                 |
 | @FAM4US20F3@ | @FAM4US20I6@ | @FAM4US20I4@ |      NA     |      NA     |                                                                                                                        []                                                                                                                        |
 |     @F1@     |     @I1@     |     @I2@     | 19-AUG-1989 |      NA     |                                                                                                                     ['@I3@']                                                                                                                     |
@@ -56,6 +56,15 @@ FAMILIES
 | @FAM02US18@  | @IND01US18@  | @IND02US18@  |      NA     |      NA     |                                                                                                                        []                                                                                                                        |
 |     @F5@     |     @I9@     |     @I8@     |  1-OCT-2016 | 30-SEP-2016 |                                                                                                                        []                                                                                                                        |
 +--------------+--------------+--------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+US35 - RECENT BIRTHS
+@IND15US15@    KID10/TWIN/    15-APR-2017
+US36 - RECENT DEATHS
+@IND18US15@    KID18/TWIN/    13-APR-2017
+US38 - UPCOMING BIRTHDAYS
+@IND15US15@    KID10/TWIN/    15-APR-2017
+@I1@    Adam/Levaine/    8-MAY-1973
+US39 - UPCOMING ANNIVERSARIES
+@FAM4US20F1@    19-APR-1989
 ALL ERRORS:
 ERROR: FAMILY. US-02. Husband @I9@ of family @F5@ married before being born
 ERROR: FAMILY. US-04. DIVORCED BEFORE MARRIAGE for @F5@
@@ -68,7 +77,9 @@ ERROR: FAMILY. US-06. Wife @IND03US15@ of family @FAM01US15@ divorced after dyin
 ERROR: FAMILY. US-08. child @I3@ of family @F1@ born before parents marrying
 ERROR: FAMILY. US-08. child @I4@ of family @F3@ born before parents marrying
 ERROR: FAMILY. US-08. child @IND02US18@ of family @FAM01US15@ born before parents marrying
+ERROR: FAMILY. US-08. child @IND13US15@ of family @FAM01US15@ born before parents marrying
 ERROR: FAMILY. US-09. child @IND02US18@ of family @FAM01US15@ born significantly after the mother @IND03US15@ died
+ERROR: FAMILY. US-09. child @IND13US15@ of family @FAM01US15@ born significantly after the mother @IND03US15@ died
 ERROR: FAMILY. US-10 Husband @I9@ of family @F5@ married before 14
 ERROR: FAMILY. US-10 Wife @I2@ of family @F1@ married before 14
 ERROR: FAMILY. US-12. child @I5@ of family @F4@ too young for father @I10@
