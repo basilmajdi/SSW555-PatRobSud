@@ -59,23 +59,23 @@ def date_check(date_big, date_small):
         
 def list_events(date_): # this func checks for dates that happen in the period of 30 days from current 
     if date_ == "NA" or date_ == 'ERR':
-        return True
+        return False
     if convert_2date(date_) < datetime.now() - timedelta(days = 30): 
         return False
     else:
         return True
 
-    
-
 def upcoming_events(dt1): # checks the difference between two days
     if dt1 == "NA" or dt1 == "ERR": 
-        return True
+        return False
     else:
         dt1 = convert_2date(dt1)
         dt2 = date.today()
-        dt3 = date(dt1.year, dt2.month, dt2.day)
-        diff = abs((dt3 - dt1).days)
-        if diff > dt1:
+        dt3 = date(dt2.year, dt1.month, dt1.day)
+        dt4 = dt2 + timedelta(days=30)
+        if dt3 >= dt2 and dt3 <= dt4:
+            return True
+        else:
             return False
 
 
